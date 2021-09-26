@@ -1,34 +1,49 @@
-# ng
+# Курс по Vue.js
 
-## Project setup
-```
-npm install
-```
+> Описание проекта
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Ссылки
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- [Vue 2 version](https://ru.vuejs.org/v2/guide/index.html) - Вторая версия Vue.
+- [Vue 3 version](https://v3.ru.vuejs.org/ru/guide/introduction.html) - Третья версия Vue.
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## Описание сдачи домашнего задания
 
-### Run your end-to-end tests
+В первом уроке не было задано четкого представления о взаимодействии и сдачи домашней работы. Здесь постараюсь объяснить основные моменты:
+
+- Структура проекта должна быть без каких-либо папок. (в репозитории должен быть корень проекта)
+- Для каждого урока должна быть отдельная ветка
+- Merge/rebase с master веткой можно сделать после того, как преподаватель проверил и поставил оценку
+
 ```
-npm run test:e2e
+P.s !!! 
+
+В четвертом уроке было сказано собирать build версию и пушить папку dist. 
+
+Это была ошибка, пушить ее, конечно же, НЕ НАДО и вытаскивать из gitignore тоже НЕ НАДО.
 ```
 
-### Lints and fixes files
+
+### Некоторые команды:
+### Установка модулей
 ```
-npm run lint
+yarn install || npm install (-D/--save-dev для добавления модулей в package.json в dev dependencies )
+
+e.g 
+npm install --save-dev @babel/core
+yarn add @babel/core --dev
+
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Сборка фронта
+```
+npm run serve - dev версия
+npm run build - production версия
+
+yarn serve 
+yarn build
+```
+
+
+## Информация будет дополняться...
+> Информация будет дополняться...
