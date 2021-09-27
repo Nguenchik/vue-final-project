@@ -1,12 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <Schedule/>
   </div>
 </template>
+
+<script>
+import Schedule from './components/Schedule.vue'
+export default {
+  name: 'App',
+  components: {
+    Schedule
+  },
+  data () {
+    return {
+      toShow: false
+    }
+  },
+  methods: {
+    toSwitch () {
+      this.toShow = !this.toShow
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
