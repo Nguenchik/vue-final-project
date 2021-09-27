@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <Schedule/>
+    <Schedule v-if="0"/>
+    <RouterPage/>
   </div>
 </template>
 
 <script>
 import Schedule from './components/Schedule.vue'
+import RouterPage from './components/RouterPage.vue'
 export default {
   name: 'App',
   components: {
-    Schedule
+    Schedule,
+    RouterPage
   },
   data () {
     return {
