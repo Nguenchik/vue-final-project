@@ -1,12 +1,19 @@
 <template>
   <div>
     <header>
-      <a href="#hello">Hello</a>
-      <a href="#dashboard">Dashboard</a>
-      <a href="#unknown">404</a>
+      <div @click="clickParamsHandler">
+        CLICK WITH PARAMS
+      </div>
+      <div @click="clickHandler">
+        CLICK ME
+      </div>
+      <router-link to="/hello">hello</router-link>
+      <router-view>
+
+      </router-view>
     </header>
     <HelloWorld v-if="page === 'hello'" />
-    <Schedule v-else-if="page === 'dashboard'" />
+    <Schedule v-else-if="page === 'dashboard'"/>
 <!--    <Page404 v-else />-->
   </div>
 </template>
@@ -22,6 +29,23 @@ export default {
   components: {
     Schedule,
     HelloWorld
+  },
+  methods: {
+    clickHandler () {
+      this.$router.push({ name: 'table' })
+    },
+    clickParamsHandler () {
+      console.log('query')
+      this.$router.push({ name: 'contract', query: { id: '12312312' } })
+    },
+    linkHandler () {
+      const links = document.querySelectorAll('a')
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault()
+        })
+      })
+    }
   }
 }
 </script>

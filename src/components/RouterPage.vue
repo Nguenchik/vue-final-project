@@ -19,6 +19,7 @@ export default {
   methods: {
     setPage () {
       console.log(location.hash)
+      console.log(location.hash.slice(1))
       this.page = location.hash.slice(1)
     }
   },
@@ -28,7 +29,6 @@ export default {
       this.setPage()
     })
   }
-
 }
 </script>
 

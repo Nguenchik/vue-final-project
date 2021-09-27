@@ -8,6 +8,7 @@
 <script>
 import Schedule from './components/Schedule.vue'
 import RouterPage from './components/RouterPage.vue'
+
 export default {
   name: 'App',
   components: {
