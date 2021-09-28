@@ -46,12 +46,13 @@ router.beforeEach((to, from, next) => {
   console.log(to)
   console.log(from)
   console.log(next)
+  next()
 })
 
-// router.afterEach((to, from) => {
-//   console.log('after')
-//   console.log(to)
-//   console.log(from)
-// })
+router.afterEach((to, from) => {
+  console.log('after')
+  console.log(to)
+  console.log(from)
+})
 
 export default router
