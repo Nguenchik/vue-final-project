@@ -46,7 +46,9 @@ router.beforeEach((to, from, next) => {
   console.log(to)
   console.log(from)
   console.log(next)
-  next()
+  // example
+  if (to.name !== 'someName') next({ name: 'table' })
+  else next()
 })
 
 router.afterEach((to, from) => {
