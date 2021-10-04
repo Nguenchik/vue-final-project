@@ -41,20 +41,20 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-router.beforeEach((to, from, next) => {
-  console.log(to)
-  console.log(from)
-  console.log(next)
-  // example
-  if (to.name !== 'someName') next({ name: 'table' })
-  else next()
-})
-
-router.afterEach((to, from) => {
-  console.log('after')
-  console.log(to)
-  console.log(from)
-})
+//
+// router.beforeEach((to, from, next) => {
+//   console.log(to)
+//   console.log(from)
+//   console.log(next)
+//   // example
+//   if (to.name !== 'someName') next({ name: 'table' })
+//   else next()
+// })
+//
+// router.afterEach((to, from) => {
+//   console.log('after')
+//   console.log(to)
+//   console.log(from)
+// })
 
 export default router
