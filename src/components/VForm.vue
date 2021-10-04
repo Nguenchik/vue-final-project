@@ -4,12 +4,13 @@
       <input class="v-form__input" placeholder="Date" v-model="date" />
       <input class="v-form__input" placeholder="Amount" v-model.number="amount" />
       <input class="v-form__input" placeholder="Type" v-model="type" />
-      <div class="v-form__btn" @click="onSaveHandler">Save!</div>
+      <button name="v-btn" class="v-form__btn" @click="onSaveHandler">Save!</button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'VForm',
   props: ['idCount'],
@@ -30,6 +31,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setNameOfMutation']),
     onSaveHandler () {
       const data = {
         id: this.idCount + 1,
@@ -37,6 +39,7 @@ export default {
         type: this.type,
         date: this.date || this.getCurrentDate
       }
+      this.setNameOfMutation(data)
       this.$emit('add', data)
     }
   }

@@ -9,9 +9,13 @@ export default new Vuex.Store({
     categoryList: {},
     categoryList2: {},
     activeList: [],
-    activeList2: []
+    activeList2: [],
+    testList: ''
   },
   mutations: {
+    setNameOfMutation (state, data) {
+      state.testList = data
+    },
     setPaymentsListData (state, payload) {
       state.categoryList = payload
       // state.categoryList = Object.assign(state.categoryList, payload)
