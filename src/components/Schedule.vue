@@ -10,6 +10,7 @@
 import VTable from '../components/VTable'
 import VForm from '../components/VForm'
 import VPage from '../components/VPage'
+import { mapActions, mapState, mapMutations } from 'vuex'
 export default {
   name: 'Schedule',
   components: {
@@ -93,21 +94,26 @@ export default {
         type: 'test',
         amount: 123
       }
-    ]
+    ],
+    page: 1
   }),
   computed: {
+    ...mapState(['categoryList', 'categoryList2'])
   },
   created () {
-    this.activeList = this.list.slice(0, 5)
+    this.fetchData(this.page)
+    // this.activeList = this.categoryList.slice(0, 5)
   },
   methods: {
+    ...mapActions(['fetchData']),
+    ...mapMutations(['setActiveList2']),
     addHandler (data) {
       this.list = [...this.list, data]
     },
     choosePageHandler (page) {
       const startNum = page * this.count
       const lastNum = startNum + this.count
-      this.activeList = this.list.slice(startNum, lastNum)
+      this.setActiveList2(this.categoryList2.slice(startNum, lastNum))
     }
   }
 }

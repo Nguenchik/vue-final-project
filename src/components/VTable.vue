@@ -8,10 +8,19 @@
           <div class="v-table__col v-table__col_dark">Category</div>
           <div class="v-table__col v-table__col_dark">Value</div>
         </div>
-        <div class="v-table__row" v-for="item in list" :key="item.id">
+        <template>
+          <div class="v-table__row" v-for="(item,index) in activeList2" :key="index">
+            <div class="v-table__col">{{ item.id }}</div>
+            <div class="v-table__col">{{ item.date }}</div>
+            <div class="v-table__col">{{ item.category }}</div>
+            <div class="v-table__col">{{ item.value }}</div>
+          </div>
+        </template>
+        <h1>------------------</h1>
+        <div class="v-table__row" v-for="(item,index) in activeList" :key="index">
           <div class="v-table__col">{{ item.id }}</div>
           <div class="v-table__col">{{ item.date }}</div>
-          <div class="v-table__col">{{ item.type }}</div>
+          <div class="v-table__col">{{ item.category }}</div>
           <div class="v-table__col">{{ item.value }}</div>
         </div>
       </div>
@@ -20,9 +29,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'VTable',
-  props: ['list']
+  props: ['list'],
+  computed: {
+    ...mapState(['activeList', 'activeList2', 'categoryList'])
+  }
 }
 </script>
 
