@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
+import general from './general'
 
+Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
   },
@@ -11,5 +12,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+    general
   }
 })
