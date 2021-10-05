@@ -24,6 +24,9 @@ export default new Vuex.Store({
     },
     setActiveList2 (state, data) {
       state.activeList2 = data
+    },
+    addDataToList (state, data) {
+      state.categoryList2.push(data)
     }
   },
   actions: {

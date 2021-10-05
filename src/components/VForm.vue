@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
+
 export default {
   name: 'VForm',
   props: ['idCount'],
@@ -21,6 +23,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['categoryList2']),
     getCurrentDate () {
       const today = new Date()
       const d = today.getDate()
@@ -30,13 +33,15 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['addDataToList']),
     onSaveHandler () {
       const data = {
-        id: this.idCount + 1,
+        id: this.categoryList2.length + 1,
         amount: this.amount,
         type: this.type,
         date: this.date || this.getCurrentDate
       }
+      this.addDataToList(data)
       this.$emit('add', data)
     }
   }
