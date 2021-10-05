@@ -33,7 +33,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['addDataToList']),
+    ...mapMutations(['addDataToList', 'addDataToList2']),
     onSaveHandler () {
       const data = {
         id: this.categoryList2.length + 1,
@@ -41,6 +41,7 @@ export default {
         type: this.type,
         date: this.date || this.getCurrentDate
       }
+      this.addDataToList2(data)
       this.addDataToList(data)
       this.$emit('add', data)
     }

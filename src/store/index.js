@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     categoryList: {},
-    categoryList2: {},
+    categoryList2: [],
     activeList: [],
     activeList2: []
   },
@@ -26,6 +26,10 @@ export default new Vuex.Store({
       state.activeList2 = data
     },
     addDataToList (state, data) {
+      const lastElement = Object.keys(state.categoryList)[Object.keys(state.categoryList).length - 1] // получение последнего ключа из нашего объекта
+      state.categoryList[lastElement].push(data)
+    },
+    addDataToList2 (state, data) {
       state.categoryList2.push(data)
     }
   },
