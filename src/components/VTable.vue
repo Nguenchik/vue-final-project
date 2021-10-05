@@ -9,7 +9,7 @@
           <div class="v-table__col v-table__col_dark">Value</div>
         </div>
         <template>
-          <div class="v-table__row" v-for="(item,index) in activeList2" :key="index">
+          <div class="v-table__row" v-for="(item,index) in activeList2" :key="index + 'a'">
             <div class="v-table__col">{{ item.id }}</div>
             <div class="v-table__col">{{ item.date }}</div>
             <div class="v-table__col">{{ item.category }}</div>

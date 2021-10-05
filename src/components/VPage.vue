@@ -17,12 +17,12 @@ export default {
   name: 'VPage',
   props: ['list'],
   computed: {
-    ...mapState(['categoryList']),
+    ...mapState(['categoryList', 'categoryList2']),
     makeArray () {
       return this.categoryList
     },
     pages () {
-      return Math.ceil(this.list.length / 5)
+      return this.categoryList2.length ? Math.ceil(this.categoryList2.length / 5) : 1
     }
   },
   methods: {
