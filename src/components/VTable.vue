@@ -2,12 +2,12 @@
   <div>
     <div class="v-table">
       <div class="v-table__container">
-        <div class="v-table__row">
-          <div class="v-table__col v-table__col_dark">id</div>
-          <div class="v-table__col v-table__col_dark">Date</div>
-          <div class="v-table__col v-table__col_dark">Category</div>
-          <div class="v-table__col v-table__col_dark">Value</div>
-        </div>
+        <v-row class="v-table__row">
+          <v-col :cols="1" class="v-table__col v-table__col_dark">id</v-col>
+          <v-col :cols="1" class="v-table__col v-table__col_dark">Date</v-col>
+          <v-col class="v-table__col v-table__col_dark">Category</v-col>
+          <v-col class="v-table__col v-table__col_dark">Value</v-col>
+        </v-row>
         <template>
           <div class="v-table__row" v-for="(item,index) in activeList2" :key="index + 'a'">
             <div class="v-table__col">{{ item.id }}</div>

@@ -1,9 +1,9 @@
 <template>
   <div>
     <form class="v-form">
-      <input class="v-form__input" placeholder="Date" v-model="date" />
-      <input class="v-form__input" placeholder="Amount" v-model.number="amount" />
-      <input class="v-form__input" placeholder="Type" v-model="type" />
+      <v-text-field class="v-form__input" placeholder="Date" v-model="date" />
+      <v-select :items="testItems" class="v-form__input" placeholder="Amount" v-model.number="amount" />
+      <v-text-field class="v-form__input" placeholder="Type" v-model="type" />
       <div v-show="isEmpty" class="v-form__btn" @click="onSaveHandler">Save!</div>
     </form>
   </div>
@@ -19,7 +19,8 @@ export default {
     return {
       amount: '',
       type: '',
-      date: ''
+      date: '',
+      testItems: ['alex', 'anna', 'igor']
     }
   },
   watch: {

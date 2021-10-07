@@ -2,9 +2,9 @@
   <div>
     <div class="links">
       <div class="links__container">
-        <div @click="goHome" class="links__btn">Home</div>
+        <v-btn color="red" plain @click="goHome" class="links__btn">Home</v-btn>
         <v-form-panel/>
-        <div v-for="item in list" :key="item.category" class="links__btn" @click="linkHandler(item)">
+        <div v-for="item in list" :key="item.category" class="links__btn mb-2" @click="linkHandler(item)">
           {{item.category}}: {{item.params.value}}
         </div>
       </div>

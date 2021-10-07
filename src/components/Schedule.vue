@@ -1,9 +1,22 @@
 <template>
   <div>
-    <v-links/>
-    <v-form v-if="formVisible"/>
-    <v-table :list="activeList"/>
-    <v-page @choose-page="choosePageHandler"/>
+    <v-container>
+      <v-menu>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+          >
+            Click me
+          </v-btn>
+        </template>
+        <h1 class="test">asdasdasd</h1>
+      </v-menu>
+      <v-links/>
+      <v-form v-if="formVisible"/>
+      <v-table :list="activeList"/>
+      <v-page @choose-page="choosePageHandler"/>
+    </v-container>
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Schedule from '@/components/Schedule'
+
 import categories from '@/router/categories'
 
 Vue.use(VueRouter)
@@ -11,7 +12,6 @@ const routes = [
     name: 'home',
     component: Schedule
   },
-
   ...categories,
   {
     path: '/about',
@@ -24,8 +24,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'history',
+  // base: process.env.BASE_URL,
   routes
 })
 

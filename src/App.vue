@@ -1,9 +1,14 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar>v-app-bar</v-app-bar>
+    <v-system-bar>v-system-var</v-system-bar>
+    <v-main>
+      <router-view/>
+    </v-main>
+    <v-bottom-navigation>v-bottom-navigation</v-bottom-navigation>
+    <v-footer>v-footer</v-footer>
+  </v-app>
 </template>
-
 <script>
 export default {
   name: 'App',
