@@ -24,9 +24,9 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      // способ отслеживания изменения роутинга
-      // this.amount = this.getRouteParams.name
-      // this.type = this.getRouteParams.params?.value
+      // способ отслеживания изменения роутинга (нужно убрать v-if а то этой компоненты нет и из-за этого не работает
+      this.amount = this.$route.name
+      this.type = this.$route.params?.value
     }
   },
   mounted () {
@@ -57,8 +57,8 @@ export default {
     setParams () {
       if (this.getCoincidence()) {
         this.date = this.getCurrentDate()
-        this.amount = this.getRouteParams.name
-        this.type = this.getRouteParams.params?.value
+        this.amount = this.$route.name
+        this.type = this.$route.params?.value
       } else {
         this.date = null
         this.amount = null
