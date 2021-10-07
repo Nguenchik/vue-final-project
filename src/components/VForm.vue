@@ -4,17 +4,17 @@
       <input class="v-form__input" placeholder="Date" v-model="date" />
       <input class="v-form__input" placeholder="Amount" v-model.number="amount" />
       <input class="v-form__input" placeholder="Type" v-model="type" />
-      <div class="v-form__btn" @click="onSaveHandler">Save!</div>
+      <div v-show="isEmpty" class="v-form__btn" @click="onSaveHandler">Save!</div>
     </form>
   </div>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-
+import { getCurrentDate } from '@/utils'
+import { quickBTNs } from '@/assets/selects'
 export default {
   name: 'VForm',
-  props: ['idCount'],
   data () {
     return {
       amount: '',
@@ -22,28 +22,60 @@ export default {
       date: ''
     }
   },
+  watch: {
+    '$route' (to, from) {
+      // способ отслеживания изменения роутинга
+      // this.amount = this.getRouteParams.name
+      // this.type = this.getRouteParams.params?.value
+    }
+  },
+  mounted () {
+    this.setParams()
+  },
   computed: {
     ...mapState(['categoryList2']),
-    getCurrentDate () {
-      const today = new Date()
-      const d = today.getDate()
-      const m = today.getMonth() + 1
-      const y = today.getFullYear()
-      return `${d}.${m}.${y}`
+    list () {
+      return quickBTNs
+    },
+    getRouteParams () {
+      return {
+        name: this.$route.name,
+        params: this.$route.params
+      }
+    },
+    isEmpty () {
+      return this.date && this.amount && this.type
     }
   },
   methods: {
     ...mapMutations(['addDataToList', 'addDataToList2']),
+    ...mapMutations('general', ['setFormVisible']),
+    getCoincidence () {
+      return this.list.some(el => el.category === this.$route.name)
+    },
+    getCurrentDate,
+    setParams () {
+      if (this.getCoincidence()) {
+        this.date = this.getCurrentDate()
+        this.amount = this.getRouteParams.name
+        this.type = this.getRouteParams.params?.value
+      } else {
+        this.date = null
+        this.amount = null
+        this.type = null
+      }
+    },
     onSaveHandler () {
       const data = {
         id: this.categoryList2.length + 1,
         amount: this.amount,
         type: this.type,
-        date: this.date || this.getCurrentDate
+        date: this.date || this.getCurrentDate()
       }
       this.addDataToList2(data)
       this.addDataToList(data)
-      this.$emit('add', data)
+      // закрыть форму
+      this.setFormVisible(false)
     }
   }
 }

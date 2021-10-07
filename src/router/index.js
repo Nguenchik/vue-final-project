@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Schedule from '@/components/Schedule'
+import categories from '@/router/categories'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    component: Schedule
   },
+
+  ...categories,
   {
     path: '/about',
     name: 'About',

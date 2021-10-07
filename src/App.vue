@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <Schedule/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Schedule from './components/Schedule.vue'
 export default {
   name: 'App',
   components: {
-    Schedule
   },
   data () {
     return {
