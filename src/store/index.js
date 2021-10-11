@@ -18,7 +18,6 @@ export default new Vuex.Store({
       // state.categoryList = Object.assign(state.categoryList, payload)
     },
     setPaymentsListData2 (state, payload) {
-      console.log('aa', payload)
       state.categoryList2 = payload
     },
     setActiveList (state, data) {
@@ -32,7 +31,6 @@ export default new Vuex.Store({
       state.categoryList[lastElement].push(data)
     },
     setCurrentItem2 (state, item) {
-      console.log(item)
       Vue.set(state, 'currentItem2', item)
     }
   },

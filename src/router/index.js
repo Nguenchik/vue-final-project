@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Schedule from '@/components/Schedule'
 import categories from '@/router/categories'
+import User from '@/views/User'
+import UserProfile from '@/views/UserProfile'
+import UserPosts from '@/views/UserPosts'
 
 Vue.use(VueRouter)
 
@@ -19,12 +22,22 @@ const routes = [
     component: Schedule
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/user/:id',
+    component: User,
+    children: [
+      {
+        // при совпадении пути с шаблоном /user/:id/profile
+        // в <router-view> компонента User будет показан UserProfile
+        path: 'profile',
+        component: UserProfile
+      },
+      {
+        // при совпадении пути с шаблоном /user/:id/posts
+        // в <router-view> компонента User будет показан UserPosts
+        path: 'posts',
+        component: UserPosts
+      }
+    ]
   }
 ]
 

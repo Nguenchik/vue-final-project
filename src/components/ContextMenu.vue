@@ -22,7 +22,6 @@ export default {
     editHandler () {
       this.setFormVisible(true)
       this.$modal.show(this.item)
-      console.log('this.item', this.item)
       if (this.$route.name !== 'edit') {
         this.$router.push({ name: 'edit', params: this.item })
       }
