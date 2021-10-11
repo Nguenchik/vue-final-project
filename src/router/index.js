@@ -14,6 +14,11 @@ const routes = [
 
   ...categories,
   {
+    path: '/edit',
+    name: 'edit',
+    component: Schedule
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

@@ -1,39 +1,49 @@
 <template>
   <div>
     <form class="v-form">
-      <input class="v-form__input" placeholder="Date" v-model="date" />
-      <input class="v-form__input" placeholder="Amount" v-model.number="amount" />
-      <input class="v-form__input" placeholder="Type" v-model="type" />
-      <div v-show="isEmpty" class="v-form__btn" @click="onSaveHandler">Save!</div>
+      <input class="v-form__input" placeholder="Date" v-model="currentItem2.date" />
+      <input class="v-form__input" placeholder="value" v-model.number="currentItem2.value" />
+      <input class="v-form__input" placeholder="Category" v-model="currentItem2.category" />
+      <div v-if="isEmpty || !isEdited" class="v-form__btn" @click="onSaveHandler">Save!</div>
+      <div v-else-if="isEdited" class="v-form__btn" @click="editHandler">Edit!</div>
     </form>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import { getCurrentDate } from '@/utils'
 import { quickBTNs } from '@/assets/selects'
 export default {
   name: 'VForm',
   data () {
     return {
-      amount: '',
-      type: '',
+      value: '',
+      category: '',
       date: ''
     }
   },
   watch: {
     '$route' (to, from) {
       // способ отслеживания изменения роутинга (нужно убрать v-if а то этой компоненты нет и из-за этого не работает
-      this.amount = this.$route.name
-      this.type = this.$route.params?.value
+      this.value = this.$route.name
+      this.category = this.$route.params?.value
     }
   },
   mounted () {
     this.setParams()
+    if (this.isEdited) {
+      const { category, date, value } = this.currentItem2
+      this.date = date
+      this.value = value
+      this.category = category
+    }
   },
   computed: {
-    ...mapState(['categoryList2']),
+    ...mapState(['categoryList2', 'currentItem2']),
+    isEdited () {
+      return this.$route.name === 'edit'
+    },
     list () {
       return quickBTNs
     },
@@ -44,12 +54,13 @@ export default {
       }
     },
     isEmpty () {
-      return this.date && this.amount && this.type
+      return this.date && this.value && this.category
     }
   },
   methods: {
-    ...mapMutations(['addDataToList', 'addDataToList2']),
+    ...mapMutations(['addDataToList']),
     ...mapMutations('general', ['setFormVisible']),
+    ...mapActions(['editList2', 'addDataToList2']),
     getCoincidence () {
       return this.list.some(el => el.category === this.$route.name)
     },
@@ -57,25 +68,30 @@ export default {
     setParams () {
       if (this.getCoincidence()) {
         this.date = this.getCurrentDate()
-        this.amount = this.$route.name
-        this.type = this.$route.params?.value
+        this.value = this.$route.name
+        this.category = this.$route.params?.value
       } else {
         this.date = null
-        this.amount = null
-        this.type = null
+        this.value = null
+        this.category = null
       }
     },
     onSaveHandler () {
+      const { category, date, value } = this.currentItem2
       const data = {
         id: this.categoryList2.length + 1,
-        amount: this.amount,
-        type: this.type,
-        date: this.date || this.getCurrentDate()
+        value: value,
+        category: category,
+        date: date || this.getCurrentDate()
       }
       this.addDataToList2(data)
       this.addDataToList(data)
       // закрыть форму
       this.setFormVisible(false)
+    },
+    editHandler () {
+      this.setFormVisible(false)
+      this.$router.push({ name: 'home' })
     }
   }
 }

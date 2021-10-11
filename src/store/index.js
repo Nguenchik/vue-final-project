@@ -9,7 +9,8 @@ export default new Vuex.Store({
     categoryList: {},
     categoryList2: [],
     activeList: [],
-    activeList2: []
+    activeList2: [],
+    currentItem2: {}
   },
   mutations: {
     setPaymentsListData (state, payload) {
@@ -17,6 +18,7 @@ export default new Vuex.Store({
       // state.categoryList = Object.assign(state.categoryList, payload)
     },
     setPaymentsListData2 (state, payload) {
+      console.log('aa', payload)
       state.categoryList2 = payload
     },
     setActiveList (state, data) {
@@ -29,8 +31,9 @@ export default new Vuex.Store({
       const lastElement = Object.keys(state.categoryList)[Object.keys(state.categoryList).length - 1] // получение последнего ключа из нашего объекта
       state.categoryList[lastElement].push(data)
     },
-    addDataToList2 (state, data) {
-      state.categoryList2.push(data)
+    setCurrentItem2 (state, item) {
+      console.log(item)
+      Vue.set(state, 'currentItem2', item)
     }
   },
   actions: {
@@ -44,6 +47,22 @@ export default new Vuex.Store({
           commit('setActiveList2', result.slice(0, 5))
           if (page === 1) commit('setActiveList', response.page1)
         })
+    },
+    removeItem2 ({ commit, state }, item) {
+      const list = state.categoryList2.filter(el => el.id !== item.id)
+      commit('setActiveList2', list.slice(0, 5))
+      commit('setPaymentsListData2', list)
+    },
+    editList2 ({ commit, state }, item) {
+      const list = state.categoryList2.filter(el => el.id !== item.id)
+      commit('setActiveList2', list.slice(0, 5))
+      commit('setPaymentsListData2', list)
+    },
+    addDataToList2 ({ commit, state }, item) {
+      const list = state.categoryList2
+      list.push(item)
+      commit('setActiveList2', list.slice(0, 5))
+      commit('setPaymentsListData2', list)
     }
   },
   modules: {
