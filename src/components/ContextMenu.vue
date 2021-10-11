@@ -21,13 +21,13 @@ export default {
     ...mapMutations('general', ['setFormVisible']),
     editHandler () {
       this.setFormVisible(true)
-      this.$modal.show(this.item)
       if (this.$route.name !== 'edit') {
         this.$router.push({ name: 'edit', params: this.item })
       }
       if (this.$route.name === 'edit') {
         this.setCurrentItem2(this.item)
       }
+      this.$modal.hide()
     },
     removeHandler () {
       this.removeItem2(this.item)

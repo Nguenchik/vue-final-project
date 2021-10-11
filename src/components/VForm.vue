@@ -4,8 +4,8 @@
       <input class="v-form__input" placeholder="Date" v-model="currentItem2.date" />
       <input class="v-form__input" placeholder="value" v-model.number="currentItem2.value" />
       <input class="v-form__input" placeholder="Category" v-model="currentItem2.category" />
-      <div v-if="isEmpty || !isEdited" class="v-form__btn" @click="onSaveHandler">Save!</div>
-      <div v-else-if="isEdited" class="v-form__btn" @click="editHandler">Edit!</div>
+      <div v-if="!isEdited" class="v-form__btn" @click="onSaveHandler">Save!</div>
+      <div v-else class="v-form__btn" @click="editHandler">Edit!</div>
     </form>
   </div>
 </template>

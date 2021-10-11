@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="test">
     <v-links/>
     <v-form v-if="formVisible"/>
     <v-table :list="activeList"/>
@@ -45,5 +45,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style module lang="scss">
+  .test{
+    .links{
+      position: relative;
+    }
+    color: red;
+  }
 </style>

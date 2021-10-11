@@ -16,7 +16,7 @@
             <div class="v-table__col">{{ item.category }}</div>
             <div class="v-table__col">{{ item.value }}</div>
             <div class="v-table__col">
-              <div class="v-table__points" @click="settingHandler(item)">
+              <div class="v-table__points" @click="$modal.show(item)">
                 :
               </div>
               <transition name="fade">
@@ -34,6 +34,9 @@
         </div>
       </div>
     </div>
+    <h1>h1 - {{ reactiveTest }}</h1>
+    <button @click="test1">test1</button>
+    <button @click="test2">test2</button>
   </div>
 </template>
 
@@ -44,7 +47,8 @@ export default {
   name: 'VTable',
   data () {
     return {
-      activeID: null
+      activeID: null,
+      reactiveTest: []
     }
   },
   components: {
@@ -59,13 +63,23 @@ export default {
     this.$modal.EventBus.$on('hide', this.onHide)
   },
   methods: {
-    onShown (settings) {
-      this.activeID = null
+    test1 () {
+      this.reactiveTest.push({ a: 1 })
+    },
+    test2 () {
+      // this.reactiveTest[0] = 2
+      this.$set(this.reactiveTest, 0, { a: 2 })
+      console.log(this.reactiveTest[0])
+    },
+    onShown (params) {
+      this.activeID = params.id
+      // this.activeID = null
     },
     onHide () {
       this.activeID = null
     },
     settingHandler (params) {
+      // this.$modal.show(params)
       this.activeID = params.id
     }
   }
