@@ -11,6 +11,11 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 export default {
   name: 'ContextMenu',
   props: ['item'],
+  data () {
+    return {
+      test: ''
+    }
+  },
   computed: {
     ...mapState(['currentItem2']),
     ...mapState('general', ['formVisible'])

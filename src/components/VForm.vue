@@ -1,6 +1,7 @@
 <template>
   <div>
     <form class="v-form">
+      <h1 v-if="0" @click="testMethod">date2: {{ date2 }}</h1>
       <input class="v-form__input" placeholder="Date" v-model="currentItem2.date" />
       <input class="v-form__input" placeholder="value" v-model.number="currentItem2.value" />
       <input class="v-form__input" placeholder="Category" v-model="currentItem2.category" />
@@ -11,11 +12,13 @@
 </template>
 
 <script>
+import MixIn from '@/mixin'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import { getCurrentDate } from '@/utils'
 import { quickBTNs } from '@/assets/selects'
 export default {
   name: 'VForm',
+  mixins: [MixIn],
   data () {
     return {
       value: '',
@@ -61,6 +64,9 @@ export default {
     ...mapMutations(['addDataToList']),
     ...mapMutations('general', ['setFormVisible']),
     ...mapActions(['editList2', 'addDataToList2']),
+    testMethod () {
+      console.log('test m')
+    },
     getCoincidence () {
       return this.list.some(el => el.category === this.$route.name)
     },

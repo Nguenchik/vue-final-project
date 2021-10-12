@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="links">
+      <h1 v-if="0">COLOR</h1>
       <div class="links__container">
         <div @click="goHome" class="links__btn">Home</div>
         <v-form-panel/>

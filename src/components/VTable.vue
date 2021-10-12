@@ -34,9 +34,6 @@
         </div>
       </div>
     </div>
-    <h1>h1 - {{ reactiveTest }}</h1>
-    <button @click="test1">test1</button>
-    <button @click="test2">test2</button>
   </div>
 </template>
 
@@ -47,8 +44,7 @@ export default {
   name: 'VTable',
   data () {
     return {
-      activeID: null,
-      reactiveTest: []
+      activeID: null
     }
   },
   components: {
@@ -63,14 +59,6 @@ export default {
     this.$modal.EventBus.$on('hide', this.onHide)
   },
   methods: {
-    test1 () {
-      this.reactiveTest.push({ a: 1 })
-    },
-    test2 () {
-      // this.reactiveTest[0] = 2
-      this.$set(this.reactiveTest, 0, { a: 2 })
-      console.log(this.reactiveTest[0])
-    },
     onShown (params) {
       this.activeID = params.id
       // this.activeID = null

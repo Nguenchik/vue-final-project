@@ -1,5 +1,6 @@
 <template>
   <div class="test">
+    <h1 v-if="0">COLOR1</h1>
     <v-links/>
     <v-form v-if="formVisible"/>
     <v-table :list="activeList"/>
@@ -47,9 +48,6 @@ export default {
 
 <style module lang="scss">
   .test{
-    .links{
-      position: relative;
-    }
     color: red;
   }
 </style>
