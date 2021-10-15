@@ -1,5 +1,5 @@
 /* eslint-disable quote-props */
-import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Calculator from '@/components/Calculator.vue'
 import Pages from '@/components/VPage.vue'
@@ -19,10 +19,11 @@ describe('Calculator operators', () => {
     wrapper.findAll('button').wrappers.find(w => {
       return w.text() === text
     })
-  const findLabelText = (text) =>
-    wrapper.findAll('label').wrappers.find(w => {
+  const findLabelText = (text) => {
+    return wrapper.findAll('label').wrappers.find(w => {
       return w.text() === text
     })
+  }
 
   afterEach(() => {
     wrapper.destroy()
@@ -78,17 +79,14 @@ describe('Calculator operators', () => {
 describe('Vuex', () => {
   let wrapper
 
-  let fakeMutations, fakeStore, state
+  let fakeStore, state
   beforeEach(() => {
-    fakeMutations = {
-      setNameOfMutation: jest.fn()
-    }
     state = {
       categoryList2: () => []
     }
     fakeStore = new Vuex.Store({
-      mutations: fakeMutations,
-      state
+      state,
+      namespaced: true
     })
   })
   const createComponent = () => {
