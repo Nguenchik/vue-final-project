@@ -27,19 +27,16 @@ export default {
     }
   },
   watch: {
-    '$route' (to, from) {
+    '$route' () {
       // способ отслеживания изменения роутинга (нужно убрать v-if а то этой компоненты нет и из-за этого не работает
-      this.value = this.$route.name
-      this.category = this.$route.params?.value
+      // this.value = this.$route.name
+      // this.category = this.$route.params?.value
     }
   },
   mounted () {
     this.setParams()
     if (this.isEdited) {
-      const { category, date, value } = this.currentItem2
-      this.date = date
-      this.value = value
-      this.category = category
+      this.addToCurrent(this.currentItem2)
     }
   },
   computed: {
@@ -61,9 +58,19 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['addDataToList']),
+    ...mapMutations(['addDataToList', 'setCurrentItem2']),
     ...mapMutations('general', ['setFormVisible']),
     ...mapActions(['editList2', 'addDataToList2']),
+    addToCurrent (currentItem) {
+      const { category, date, value } = currentItem
+      const data = {
+        id: this.categoryList2.length + 1,
+        value: value,
+        category: category,
+        date: date || this.getCurrentDate()
+      }
+      this.setCurrentItem2(data)
+    },
     testMethod () {
       console.log('test m')
     },
@@ -73,9 +80,12 @@ export default {
     getCurrentDate,
     setParams () {
       if (this.getCoincidence()) {
-        this.date = this.getCurrentDate()
-        this.value = this.$route.name
-        this.category = this.$route.params?.value
+        const data = {
+          value: this.$route.name,
+          category: this.$route.params?.value,
+          date: this.getCurrentDate()
+        }
+        this.addToCurrent(data)
       } else {
         this.date = null
         this.value = null

@@ -4,7 +4,7 @@
     <v-links/>
     <v-form v-if="formVisible"/>
     <v-table :list="activeList"/>
-    <v-page @choose-page="choosePageHandler"/>
+    <v-page v-if="0" @choose-page="choosePageHandler"/>
   </div>
 </template>
 
