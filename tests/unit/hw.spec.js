@@ -27,7 +27,7 @@ describe('Calculator operators', () => {
   afterEach(() => {
     wrapper.destroy()
   })
-
+  // it-это алиас test https://jestjs.io/docs/api#testname-fn-timeout
   test('Ввод данных', () => {
     createComponent()
     const operand1 = wrapper.find('input[name=operand1]')
