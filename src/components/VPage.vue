@@ -1,7 +1,7 @@
 <template>
-  <div class="v-page" >
+  <div class="v-page" data-test="pages">
     <template>
-      <div class="v-page__number" v-for="(item, index) in pages" :key="item" @click="choosePage(index)">
+      <div data-test="page" class="v-page__number" v-for="(item, index) in pages" :key="item" @click="choosePage(index)">
         {{ item }}
       </div>
     </template>
